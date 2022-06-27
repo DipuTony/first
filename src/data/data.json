@@ -1,0 +1,18 @@
+[
+    {
+        "id" : 1,
+        "fname" : "Dipu",
+        "lname" : "singh"
+    },
+
+    {
+        "id" : 2,
+        "fname" : "Raj",
+        "lname" : "Kumar"
+    },
+    {
+        "id" : 3,
+        "fname" : "Mike",
+        "lname" : "Jons"
+    }
+]
