@@ -1,8 +1,9 @@
 import React from 'react'
 import { useState } from 'react';
+import { Formik,From } from 'formik';
 
 
-export default function Form() {
+export default function MyForm() {
 
     const [fname, setFname] = useState("");
     const [lname, setLname] = useState("");
