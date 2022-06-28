@@ -1,9 +1,10 @@
-import React, { useContext } from 'react'
+import React from 'react'
+// import { useContext } from 'react'
 import { useState, useRef } from 'react';
 import axios from 'axios';
-import { ToastContainer, toast } from 'react-toastify';
+import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { Context } from './Context';
+// import { Context } from './Context';
 import ShowData from './ShowData';
 
 const NewFrom = () => {
@@ -16,7 +17,7 @@ const NewFrom = () => {
     imginputRef.current.value = "";
   }
 
-  const value = useContext(Context);
+  // const value = useContext(Context);
   // console.log("this is useContxt", value);
 
   const [fname, setFname] = useState("");
