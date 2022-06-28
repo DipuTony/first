@@ -1,16 +1,38 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { useState } from 'react';
-import { Formik,From } from 'formik';
+import { Formik, From } from 'formik';
+import axios from 'axios';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import { Context } from './Context';
 
 
 export default function MyForm() {
 
+    const value = useContext(Context);
+    console.log("this is useContxt", value);
+
     const [fname, setFname] = useState("");
     const [lname, setLname] = useState("");
 
+    const toastMsg = (e) => toast(e);
+
     const insertData = (e) => {
         e.preventDefault();
-        console.log(`First name is ${fname} and Last Name is ${lname}`);
+        // console.log(`First name is ${fname} and Last Name is ${lname}`);
+
+        axios({
+            method: 'post',
+            url: 'http://localhost:3000/info',
+            data: {
+                fname: fname,
+                lname: lname
+            }            
+        }).then(            
+            console.log("Added"),
+            toastMsg('Data Added Successfully')
+            
+        );
     }
 
     return (
@@ -39,8 +61,8 @@ export default function MyForm() {
                 </div>
                 <div className="md:flex md:items-center">
                     <div className="md:w-1/3"></div>
-                    <div className="md:w-2/3">
-                        <input type="submit" className="shadow bg-purple-500 hover:bg-purple-400 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded"/>
+                    <div className="md:w-2/3">           
+                        <button className="shadow bg-green-500 text-white font-bold py-2 px-4 hover:bg-green-400 rounded" type='submit'>Add Data</button>                   
                     </div>
                 </div>
             </form>
