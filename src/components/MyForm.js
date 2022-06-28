@@ -1,5 +1,5 @@
 import React, { useContext } from 'react'
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 import { Formik, From } from 'formik';
 import axios from 'axios';
 import { ToastContainer, toast } from 'react-toastify';
@@ -9,8 +9,15 @@ import { Context } from './Context';
 
 export default function MyForm() {
 
+    const fNameinputRef = useRef(null)
+    const lNameinputRef = useRef(null)
+    const handleRef = () =>{
+        fNameinputRef.current.value="";
+        lNameinputRef.current.value="";
+    }
+
     const value = useContext(Context);
-    console.log("this is useContxt", value);
+    // console.log("this is useContxt", value);
 
     const [fname, setFname] = useState("");
     const [lname, setLname] = useState("");
@@ -29,7 +36,7 @@ export default function MyForm() {
                 lname: lname
             }            
         }).then(            
-            console.log("Added"),
+            // console.log("Added"),
             toastMsg('Data Added Successfully')
             
         );
@@ -46,7 +53,7 @@ export default function MyForm() {
                         </label>
                     </div>
                     <div className="md:w-2/3">
-                        <input type="text" placeholder="First Name" value={fname} onChange={(e) => setFname(e.target.value)} className="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500" />
+                        <input type="text" ref={fNameinputRef} placeholder="First Name" value={fname} onChange={(e) => setFname(e.target.value)} className="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500" />
                     </div>
                 </div>
                 <div className="md:flex md:items-center mb-6">
@@ -56,13 +63,13 @@ export default function MyForm() {
                         </label>
                     </div>
                     <div className="md:w-2/3">
-                        <input type="text" placeholder="Last Name" value={lname} onChange={(e) => setLname(e.target.value)} className="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500" />
+                        <input type="text" ref={lNameinputRef} placeholder="Last Name" value={lname} onChange={(e) => setLname(e.target.value)} className="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500" />
                     </div>
                 </div>
                 <div className="md:flex md:items-center">
                     <div className="md:w-1/3"></div>
                     <div className="md:w-2/3">           
-                        <button className="shadow bg-green-500 text-white font-bold py-2 px-4 hover:bg-green-400 rounded" type='submit'>Add Data</button>                   
+                        <button onClick={handleRef} className="shadow bg-green-500 text-white font-bold py-2 px-4 hover:bg-green-400 rounded" type='submit'>Add Data</button>                   
                     </div>
                 </div>
             </form>

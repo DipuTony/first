@@ -17,8 +17,6 @@ export default function ViewData(props) {
     const deleteHandle = (id) => {
         axios.delete(`http://localhost:3000/info/${id}`)  
       .then(res => {  
-        // console.log(res);  
-        console.log("Data Deleted");  
         toastMsg('Deleted Successfully...');
       })}
 
