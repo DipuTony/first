@@ -43,6 +43,7 @@ export default function ShowData() {
                             <th className="px-4 py-3 title-font tracking-wider font-medium text-gray-900 text-sm bg-gray-100 rounded-tl rounded-bl">ID</th>
                             <th className="px-4 py-3 title-font tracking-wider font-medium text-gray-900 text-sm bg-gray-100">First Name</th>
                             <th className="px-4 py-3 title-font tracking-wider font-medium text-gray-900 text-sm bg-gray-100">Last Name</th>
+                            <th className="px-4 py-3 title-font tracking-wider font-medium text-gray-900 text-sm bg-gray-100">Image</th>
                             <th className="px-4 py-3 title-font tracking-wider font-medium text-gray-900 text-sm bg-gray-100">Edit</th>
                             <th className="w-10 title-font tracking-wider font-medium text-gray-900 text-sm bg-gray-100 rounded-tr rounded-br">Delete</th>
                         </tr>
@@ -53,6 +54,8 @@ export default function ShowData() {
                                 <td className="border-t-2 border-gray-200 px-4 py-3">{e.id}</td>
                                 <td className="border-t-2 border-gray-200 px-4 py-3">{e.fname}</td>
                                 <td className="border-t-2 border-gray-200 px-4 py-3">{e.lname}</td>
+                                <td className="border-t-2 border-gray-200 px-4 py-3"><img src={e.imgUrl} className="h-10 w-10 border rounded" alt={`${e.fname}`}
+/></td>
                                 <td className="border-t-2 border-gray-200 px-4 py-3"><RiEdit2Fill onClick={() => editHandle(e.id)} /></td>
                                 <td className="border-t-2 border-gray-200 px-4 py-3"><RiDeleteBin2Fill onClick={() => deleteHandle(e.id)} /></td>
                             </tr>
