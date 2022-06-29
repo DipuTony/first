@@ -1,13 +1,16 @@
 import React from 'react'
 import axios from 'axios';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { RiDeleteBin2Fill, RiEdit2Fill } from "react-icons/ri";
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 
 export default function ShowData() {
-    const [dataLIst, setdataLIst] = useState([{ id: '', fname: '', lname: '' }])
+
+    const defUrl = "https://i.ibb.co/L1tmLD5/unkwn.jpg";
+
+    const [dataLIst, setdataLIst] = useState([{ id: '', fname: '', lname: '', imgUrl:'' }])
     const toastMsg = (e) => toast(e);
 
     const editHandle = (id) => {
@@ -22,7 +25,9 @@ export default function ShowData() {
     }
 
     // Make a request for a user with a given ID
-    axios.get('http://localhost:3000/info')
+    useEffect(() => {
+        console.log("Page Lod")
+        axios.get('http://localhost:3000/info')
         .then(function (response) {
             //   console.log('from axios ',response.data);
             setdataLIst(response.data)
@@ -34,8 +39,10 @@ export default function ShowData() {
         .then(function () {
             // always executed
         });
+    },[dataLIst]);
     return (
         <div>
+            {/* <button onClick={dataLoad}>Click</button> */}
             <section className="text-gray-600 body-font">
                 <table className="table-auto w-full text-left whitespace-no-wrap">
                     <thead>
@@ -54,7 +61,7 @@ export default function ShowData() {
                                 <td className="border-t-2 border-gray-200 px-4 py-3">{e.id}</td>
                                 <td className="border-t-2 border-gray-200 px-4 py-3">{e.fname}</td>
                                 <td className="border-t-2 border-gray-200 px-4 py-3">{e.lname}</td>
-                                <td className="border-t-2 border-gray-200 px-4 py-3"><img src={e.imgUrl} className="h-10 w-10 border rounded" alt={`${e.fname}`}
+                                <td className="border-t-2 border-gray-200 px-4 py-3"><img src={e.imgUrl ? e.imgUrl : defUrl } className="h-10 w-10 border rounded" alt={`${e.fname}`}
 /></td>
                                 <td className="border-t-2 border-gray-200 px-4 py-3"><RiEdit2Fill onClick={() => editHandle(e.id)} /></td>
                                 <td className="border-t-2 border-gray-200 px-4 py-3"><RiDeleteBin2Fill onClick={() => deleteHandle(e.id)} /></td>
