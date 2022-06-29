@@ -12,11 +12,6 @@ export default function ShowData(props) {
     const [dataLIst, setdataLIst] = useState([{ id: '', fname: '', lname: '', imgUrl:'' }])
     const toastMsg = (e) => toast(e);
 
-    // const editHandle = (id) => {
-    //     console.log("Edit Clicked..", id);
-    //     setEditbtn("Update");
-    // }
-
     const deleteHandle = (id) => {
         axios.delete(`http://localhost:3000/info/${id}`)
             .then(res => {
@@ -28,15 +23,11 @@ export default function ShowData(props) {
     useEffect(() => {
       fetchDate()
     }, [props.goTofetchDate])
-    
-    // props.goTofetchDate();
 
-    // Make a request for a user with a given ID
     const fetchDate = () => {
         // console.log("Page Lod")
         axios.get('http://localhost:3000/info')
         .then(function (response) {
-            //   console.log('from axios ',response.data);
             setdataLIst(response.data)
         })
         .catch(function (error) {
@@ -49,7 +40,6 @@ export default function ShowData(props) {
     };
     return (
         <div>
-            {/* <button onClick={dataLoad}>Click</button> */}
             <section className="text-gray-600 body-font">
                 <table className="table-auto w-full text-left whitespace-no-wrap">
                     <thead>
