@@ -9,7 +9,6 @@ import 'react-toastify/dist/ReactToastify.css';
 export default function ShowData(props) {
 
     const defUrl = "https://i.ibb.co/L1tmLD5/unkwn.jpg";
-    const [editBtn, setEditbtn] = useState("Add");
     const [dataLIst, setdataLIst] = useState([{ id: '', fname: '', lname: '', imgUrl:'' }])
     const toastMsg = (e) => toast(e);
 
@@ -21,13 +20,20 @@ export default function ShowData(props) {
     const deleteHandle = (id) => {
         axios.delete(`http://localhost:3000/info/${id}`)
             .then(res => {
-                toastMsg('Deleted Successfully...');
+                toastMsg('Deleted Successfully...')
+                fetchDate()
             })
     }
 
-    // Make a request for a user with a given ID
     useEffect(() => {
-        console.log("Page Lod")
+      fetchDate()
+    }, [1])
+    
+    // props.fetchDate();
+
+    // Make a request for a user with a given ID
+    const fetchDate = () => {
+        // console.log("Page Lod")
         axios.get('http://localhost:3000/info')
         .then(function (response) {
             //   console.log('from axios ',response.data);
@@ -40,7 +46,7 @@ export default function ShowData(props) {
         .then(function () {
             // always executed
         });
-    },[dataLIst]);
+    };
     return (
         <div>
             {/* <button onClick={dataLoad}>Click</button> */}
