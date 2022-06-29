@@ -6,16 +6,17 @@ import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 
-export default function ShowData() {
+export default function ShowData(props) {
 
     const defUrl = "https://i.ibb.co/L1tmLD5/unkwn.jpg";
-
+    const [editBtn, setEditbtn] = useState("Add");
     const [dataLIst, setdataLIst] = useState([{ id: '', fname: '', lname: '', imgUrl:'' }])
     const toastMsg = (e) => toast(e);
 
-    const editHandle = (id) => {
-        console.log("Edit Clicked..", id);
-    }
+    // const editHandle = (id) => {
+    //     console.log("Edit Clicked..", id);
+    //     setEditbtn("Update");
+    // }
 
     const deleteHandle = (id) => {
         axios.delete(`http://localhost:3000/info/${id}`)
@@ -61,9 +62,8 @@ export default function ShowData() {
                                 <td className="border-t-2 border-gray-200 px-4 py-3">{e.id}</td>
                                 <td className="border-t-2 border-gray-200 px-4 py-3">{e.fname}</td>
                                 <td className="border-t-2 border-gray-200 px-4 py-3">{e.lname}</td>
-                                <td className="border-t-2 border-gray-200 px-4 py-3"><img src={e.imgUrl ? e.imgUrl : defUrl } className="h-10 w-10 border rounded" alt={`${e.fname}`}
-/></td>
-                                <td className="border-t-2 border-gray-200 px-4 py-3"><RiEdit2Fill onClick={() => editHandle(e.id)} /></td>
+                                <td className="border-t-2 border-gray-200 px-4 py-3"><img src={e.imgUrl ? e.imgUrl : defUrl } className="h-10 w-10 border rounded" alt={`${e.fname}`} /></td>
+                                <td className="border-t-2 border-gray-200 px-4 py-3"><RiEdit2Fill onClick={() => props.editHandle(e.id)} /></td>
                                 <td className="border-t-2 border-gray-200 px-4 py-3"><RiDeleteBin2Fill onClick={() => deleteHandle(e.id)} /></td>
                             </tr>
                         ))}
