@@ -27,9 +27,9 @@ export default function ShowData(props) {
 
     useEffect(() => {
       fetchDate()
-    }, [1])
+    }, [props.goTofetchDate])
     
-    // props.fetchDate();
+    // props.goTofetchDate();
 
     // Make a request for a user with a given ID
     const fetchDate = () => {

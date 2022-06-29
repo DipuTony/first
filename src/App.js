@@ -20,7 +20,7 @@ function App() {
     <div id="main">
       <Router>
 
-        <Header date={dateIs} title="LrnTube" />
+        <Header date={dateIs} title="CRUD" />
         <ToastContainer />
         <Context.Provider value="Hello World!" >
           <Routes>
