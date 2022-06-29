@@ -44,7 +44,7 @@ export default function ShowData(props) {
                 <table className="table-auto w-full text-left whitespace-no-wrap">
                     <thead>
                         <tr>
-                            <th className="px-4 py-3 title-font tracking-wider font-medium text-gray-900 text-sm bg-gray-100 rounded-tl rounded-bl">ID</th>
+                            <th className="px-4 py-3 title-font tracking-wider font-medium text-gray-900 text-sm bg-gray-100 rounded-tl rounded-bl">Sr. No</th>
                             <th className="px-4 py-3 title-font tracking-wider font-medium text-gray-900 text-sm bg-gray-100">First Name</th>
                             <th className="px-4 py-3 title-font tracking-wider font-medium text-gray-900 text-sm bg-gray-100">Last Name</th>
                             <th className="px-4 py-3 title-font tracking-wider font-medium text-gray-900 text-sm bg-gray-100">Image</th>
@@ -53,9 +53,10 @@ export default function ShowData(props) {
                         </tr>
                     </thead>
                     <tbody>
-                        {dataLIst.map((e) => (
-                            <tr key={e.id}>
-                                <td className="border-t-2 border-gray-200 px-4 py-3">{e.id}</td>
+                        
+                        {dataLIst.map((e, i ) => (
+                            <tr key={e.id} >
+                                <td className="border-t-2 border-gray-200 px-4 py-3">{i+1}</td>
                                 <td className="border-t-2 border-gray-200 px-4 py-3">{e.fname}</td>
                                 <td className="border-t-2 border-gray-200 px-4 py-3">{e.lname}</td>
                                 <td className="border-t-2 border-gray-200 px-4 py-3"><img src={e.imgUrl ? e.imgUrl : defUrl } className="h-10 w-10 border rounded" alt={`${e.fname}`} /></td>
